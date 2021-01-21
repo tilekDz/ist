@@ -27,6 +27,22 @@ public class User {
     @Column(name = "CREATED_DATE")
     private Date date;
 
+    @Column(name = "IS_ADMIN")
+    private Boolean isAdmin;
+
+    public User() {
+    }
+
+    public User(String firstName, String lastName, String email, String password, Boolean active, Date date, Boolean isAdmin) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.active = active;
+        this.date = date;
+        this.isAdmin = isAdmin;
+    }
+
     public long getId() {
         return id;
     }
@@ -81,5 +97,13 @@ public class User {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
 }
