@@ -19,12 +19,12 @@ public class SubjectService {
         return this.subjectRepository.findById(id).orElse(null);
     }
 
-    public void save(Subject user) {
-        this.subjectRepository.save(user);
+    public void save(Subject subject) {
+        this.subjectRepository.save(subject);
     }
 
-    public void delete(Subject user) {
-        user.setActive(false);
-        this.subjectRepository.save(user);
+    public void delete(Subject subject) {
+        subject.setActive(false);
+        this.subjectRepository.save(subject);
     }
 }
