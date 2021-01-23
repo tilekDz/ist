@@ -5,6 +5,8 @@ import kg.iaau.edu.diploma.ist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -26,5 +28,9 @@ public class UserService {
     public void delete(User user) {
         user.setActive(false);
         this.userRepository.save(user);
+    }
+
+    public List<User> getAllActive() {
+        return this.userRepository.findAllByActiveIsTrue();
     }
 }
