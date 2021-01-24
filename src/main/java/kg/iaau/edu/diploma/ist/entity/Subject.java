@@ -3,7 +3,7 @@ package kg.iaau.edu.diploma.ist.entity;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "templates/subject")
+@Entity(name = "subject")
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
