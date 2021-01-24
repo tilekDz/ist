@@ -1,34 +1,26 @@
 package kg.iaau.edu.diploma.ist.entity;
 
 import javax.persistence.*;
-import java.util.Date;
 
-@Entity(name = "templates/subject")
-public class Subject {
+@Entity(name = "faculty")
+public class Faculty{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "SUBJECT_NAME")
+    @Column(name = "FACULTY_NAME")
     private String name;
 
     @Column(name = "DESCRIPTION", columnDefinition="TEXT")
     private String description;
 
-    @Column(name = "IS_ACTIVE")
+    @Column(name = "FACULTY_ACTIVE")
     private Boolean active;
 
-    @ManyToOne
-    @JoinColumn(name = "CREATED_BY")
-    private User user;
-
-    @Column(name = "CREATED_DATE")
-    private Date date;
-
-    public Subject() {
+    public Faculty(){
     }
-
-    public Subject(String name, String description, Boolean active) {
+    public Faculty(long id, String name, String description, Boolean active){
+        this.id = id;
         this.name = name;
         this.description = description;
         this.active = active;
@@ -65,4 +57,5 @@ public class Subject {
     public void setActive(Boolean active) {
         this.active = active;
     }
+
 }
