@@ -19,6 +19,10 @@ public class Department{
 
     @ManyToOne
     @JoinColumn(name = "CREATED_BY")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "FACULTY_ID")
     private Faculty faculty;
 
     public Department(){
@@ -30,6 +34,7 @@ public class Department{
         this.description = description;
         this.active = active;
     }
+
     public long getId() {
         return id;
     }

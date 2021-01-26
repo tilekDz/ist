@@ -17,6 +17,10 @@ public class Faculty{
     @Column(name = "FACULTY_ACTIVE")
     private Boolean active;
 
+    @ManyToOne
+    @JoinColumn(name = "CREATED_BY")
+    private User user;
+
     public Faculty(){
     }
     public Faculty(long id, String name, String description, Boolean active){

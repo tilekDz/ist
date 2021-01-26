@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(value = "templates/department")
+@RequestMapping(value = "/department")
 public class DepartmentController {
 
     private final DepartmentService departmentService;

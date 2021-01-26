@@ -22,6 +22,10 @@ public class Subject {
     @JoinColumn(name = "CREATED_BY")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "DEPARTMENT_ID")
+    private Department department;
+
     @Column(name = "CREATED_DATE")
     private Date date;
 

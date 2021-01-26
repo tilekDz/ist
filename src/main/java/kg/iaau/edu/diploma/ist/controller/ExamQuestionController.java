@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(value = "templates/examQuestion")
+@RequestMapping(value = "/examQuestion")
 public class ExamQuestionController {
 
     private final ExamQuestionService examQuestionService;
