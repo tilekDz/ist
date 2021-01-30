@@ -33,4 +33,8 @@ public class UserService {
     public List<User> getAllActive() {
         return this.userRepository.findAllByActiveIsTrue();
     }
+
+    public User getByEmail(String email) {
+        return userRepository.findByEmailAndActiveIsTrue(email);
+    }
 }
