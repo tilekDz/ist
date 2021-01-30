@@ -1,9 +1,12 @@
 package kg.iaau.edu.diploma.ist.service;
 
 import kg.iaau.edu.diploma.ist.entity.Subject;
+import kg.iaau.edu.diploma.ist.entity.User;
 import kg.iaau.edu.diploma.ist.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SubjectService {
@@ -26,5 +29,8 @@ public class SubjectService {
     public void delete(Subject subject) {
         subject.setActive(false);
         this.subjectRepository.save(subject);
+    }
+    public List<Subject> getAllActive() {
+        return this.subjectRepository.findAllByActiveIsTrue();
     }
 }

@@ -130,6 +130,14 @@ public class ExamQuestion {
         this.user = user;
     }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     public Date getDate() {
         return date;
     }

@@ -1,21 +1,20 @@
 package kg.iaau.edu.diploma.ist.entity;
 
 import javax.persistence.*;
-import java.util.Date;
 
-@Entity(name = "subject")
-public class Subject {
+@Entity(name = "department")
+public class Department{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "SUBJECT_NAME")
+    @Column(name = "DEPARTMENT_NAME")
     private String name;
 
     @Column(name = "DESCRIPTION", columnDefinition="TEXT")
     private String description;
 
-    @Column(name = "IS_ACTIVE")
+    @Column(name = "DEPARTMENT_ACTIVE")
     private Boolean active;
 
     @ManyToOne
@@ -23,16 +22,14 @@ public class Subject {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "DEPARTMENT_ID")
-    private Department department;
+    @JoinColumn(name = "FACULTY_ID")
+    private Faculty faculty;
 
-    @Column(name = "CREATED_DATE")
-    private Date date;
-
-    public Subject() {
+    public Department(){
     }
 
-    public Subject(String name, String description, Boolean active) {
+    public Department(long id, String name, String description, Boolean active){
+        this.id = id;
         this.name = name;
         this.description = description;
         this.active = active;
@@ -61,7 +58,6 @@ public class Subject {
     public void setDescription(String description) {
         this.description = description;
     }
-
     public Boolean getActive() {
         return active;
     }
@@ -69,4 +65,5 @@ public class Subject {
     public void setActive(Boolean active) {
         this.active = active;
     }
+
 }

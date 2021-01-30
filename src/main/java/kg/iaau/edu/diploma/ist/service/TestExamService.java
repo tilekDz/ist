@@ -2,9 +2,12 @@ package kg.iaau.edu.diploma.ist.service;
 
 import kg.iaau.edu.diploma.ist.entity.Subject;
 import kg.iaau.edu.diploma.ist.entity.TestExam;
+import kg.iaau.edu.diploma.ist.entity.User;
 import kg.iaau.edu.diploma.ist.repository.TestExamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TestExamService {
@@ -17,6 +20,19 @@ public class TestExamService {
 
     public TestExam getTestExamById(long id) {
         return this.testExamRepository.findById(id).orElse(null);
+    }
+
+    public void save(TestExam testExam) {
+        this.testExamRepository.save(testExam);
+    }
+
+    public void delete(TestExam testExam) {
+        testExam.setActive(false);
+        this.testExamRepository.save(testExam);
+    }
+
+    public List<TestExam> getAllActive() {
+        return this.testExamRepository.findAllByActiveIsTrue();
     }
 
 

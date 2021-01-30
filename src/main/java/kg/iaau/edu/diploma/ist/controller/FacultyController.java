@@ -1,6 +1,8 @@
 package kg.iaau.edu.diploma.ist.controller;
 
+import kg.iaau.edu.diploma.ist.entity.Faculty;
 import kg.iaau.edu.diploma.ist.entity.User;
+import kg.iaau.edu.diploma.ist.service.FacultyService;
 import kg.iaau.edu.diploma.ist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,26 +11,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(value = "/user")
-public class UserController {
+@RequestMapping(value = "/faculty")
+public class FacultyController {
 
-    private final UserService userService;
+    private final FacultyService facultyService;
 
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public FacultyController(FacultyService facultyService) {
+        this.facultyService = facultyService;
     }
 
     @RequestMapping(value = "/index")
     public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("user/userIndex");
-        modelAndView.addObject("items", userService.getAllActive());
+        ModelAndView modelAndView = new ModelAndView("faculty/facultyIndex");
+        modelAndView.addObject("items", facultyService.getAllActive());
         return modelAndView;
     }
 
     @RequestMapping(value = "/save")
-    public String save(@ModelAttribute User user) {
-        this.userService.save(user);
-        return "redirect:/user/index";
+    public String save(@ModelAttribute Faculty faculty) {
+        this.facultyService.save(faculty);
+        return "redirect:/faculty/index";
     }
 }
