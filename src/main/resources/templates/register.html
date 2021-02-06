@@ -316,16 +316,32 @@
 <div class="wrapper fadeInDown">
     <div id="formContent">
 
-        <!-- Login Form -->
-        <form th:action="@{/login}" method="post">
-            <input type="text" id="login" class="fadeIn second" name="email" placeholder="login">
-            <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-            <div th:if="${param.error}">
-                <p>Email or Password invalid, please verify</p>
+        <form name="myform" th:action="@{/user/register/save}" method="post" th:object="${user}" enctype="multipart/form-data">
+            <input type="hidden" name="id" th:field="*{id}">
+            <input th:field="*{active}" type="hidden">
+            <input th:field="*{date}" type="hidden">
+            <input th:field="*{admin}" type="hidden">
+            <div class="form-group">
+                <label for="myName">User First Name *</label>
+                <input id="myName" th:field="*{firstName}" required="required" name="name" class="form-control" type="text">
             </div>
-            <input type="submit" class="fadeIn fourth" value="Log In">
-            <button type="button" class="btn btn-primary" style="background-color: #2d2652;"><a th:href="@{/user/register}" class="w3-bar-item w3-button">Registration</a></button>
+            <div class="form-group">
+                <label for="myLastName">User Last Name *</label>
+                <input id="myLastName" th:field="*{lastName}" required="required" name="lastName" class="form-control" type="text">
+            </div>
+            <div class="form-group">
+                <label for="email">Username or Email *</label>
+                <input id="email" th:field="*{email}" required="required" name="email"  class="form-control" type="text">
+            </div>
+            <div class="form-group">
+                <label for="password">Password *</label>
+                <input id="password" th:field="*{password}" required="required" class="form-control" name="password" type="password">
+            </div>
+
+            <button type="submit"  class="btn btn-primary" style="background-color: #2d2652;">Submit</button>
+            <a th:href="@{/}"  class="w3-bar-item w3-button"><button type="button"  class="btn btn-primary" style="background-color: #2d2652;">Login</button></a>
         </form>
+
     </div>
 </div>
 </body>

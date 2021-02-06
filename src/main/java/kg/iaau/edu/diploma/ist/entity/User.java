@@ -8,7 +8,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "USER_FIRST_NAME")
     private String firstName;
@@ -29,7 +29,7 @@ public class User {
     private Date date;
 
     @Column(name = "IS_ADMIN")
-    private Boolean isAdmin;
+    private Boolean admin;
 
     @ManyToMany(cascade = CascadeType.DETACH )
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -53,14 +53,14 @@ public class User {
         this.password = password;
         this.active = active;
         this.date = date;
-        this.isAdmin = isAdmin;
+        this.admin = isAdmin;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -113,10 +113,10 @@ public class User {
     }
 
     public Boolean getAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(Boolean admin) {
-        isAdmin = admin;
+        admin = admin;
     }
 }
