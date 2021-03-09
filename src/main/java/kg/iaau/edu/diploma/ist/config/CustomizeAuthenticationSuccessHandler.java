@@ -35,7 +35,7 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
         }
 
         if(manager){
-            response.sendRedirect("/homePage");
+            response.sendRedirect("/adminPage");
         }
     }
 }
