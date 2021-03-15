@@ -62,6 +62,7 @@ public class DepartmentController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(@ModelAttribute Department department) {
+        department.setActive(true);
         this.departmentService.save(department);
         return "redirect:/department/index";
     }
@@ -102,7 +103,7 @@ public class DepartmentController {
         int pageSize = size.orElse(PaginationConstant.INITIAL_PAGE_SIZE);
 
         Specification<Department> specification = new DepartmentSpecification(departmentPattern);
-        Pageable pageable = PageRequest.of(currentPage-1, pageSize, Sort.Direction.DESC, "createdDate");
+        Pageable pageable = PageRequest.of(currentPage-1, pageSize, Sort.Direction.DESC, "id");
 
         Page<Department> departments = departmentService.getAllDepartments(specification, pageable);
 

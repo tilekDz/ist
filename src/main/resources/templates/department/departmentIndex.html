@@ -56,7 +56,7 @@
                         <tr>
                             <th><input type="text" name="name" class="form-control input-filter" placeholder="Item Name" th:field="*{name}"/></th>
                             <th><input type="text" name="description" class="form-control input-filter" placeholder="Item Description" th:field="*{description}"/></th>
-                            <th><input type="text" name="type" class="form-control input-filter" placeholder="Type" th:field="*{faculty}"/></th>
+                            <th>Факультет</th>
                             <th><button class="btn btn-primary" type="submit" style="background-color: #2d2652;">Search</button></th>
                         </tr>
                         </thead>
@@ -66,7 +66,7 @@
                             <tr>
                                 <td><a th:href="@{/department/get/__${s.id}__}"><p th:text="${s.name}"></p></a></td>
                                 <td th:text="${s.description}">...</td>
-                                <td th:text="${s.faculty.name}">...</td>
+                                <td th:text="${s.faculty}">...</td>
                             </tr>
                         </th:block>
                         </tbody>
