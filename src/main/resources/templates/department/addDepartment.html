@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>AIU-SITP</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Ala-Too_International_University_Seal.png/220px-Ala-Too_International_University_Seal.png" />
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<style>
+    body {font-family: "Times New Roman", Georgia, Serif;}
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Playfair Display";
+        letter-spacing: 5px;
+    }
+</style>
+<body>
+<div class="w3-top" style="color: white;">
+    <div class="w3-bar w3-padding w3-card" style="letter-spacing:4px; background-color: #2d2652">
+        <a th:href="@{/adminPage}" class="w3-bar-item w3-button">Student Information-Test portal</a>
+        <!-- Right-sided navbar links. Hide them on small screens -->
+        <div class="w3-right w3-hide-small">
+            <a th:href="@{/department/index}" class="w3-bar-item w3-button">Departments</a>
+            <a th:href="@{/faculty/index}" class="w3-bar-item w3-button">Faculties</a>
+            <a th:href="@{/exam/index}" class="w3-bar-item w3-button">Exams</a>
+            <a th:href="@{/test/index}" class="w3-bar-item w3-button">Tests</a>
+            <a th:href="@{/logout}" class="w3-bar-item w3-button">Log out</a>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 9%">
+    <div class="col-md-6 col-sm-12 col-lg-6 col-md-offset-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background-color: #2d2652;">Add Department
+            </div>
+            <div class="panel-body">
+                <form name="myform" th:action="@{/department/save}" method="post" th:object="${item}" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">Department Name</label>
+                        <input id="name" required th:field="*{name}" name="name" class="form-control" type="text" data-validation="required">
+                        <span id="error_name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description *</label>
+                        <input id="description" name="description"  th:field="*{description}" class="form-control" type="text">
+                        <span id="error_description" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="faculty">Faculty</label>
+                        <select id="faculty" name="faculty" th:field="*{faculty}" data-validation="required" class="form-control" >
+                            <option th:each="f: ${faculties}"
+                                    th:value="${f.id}"
+                                    th:text="${f.name}"/>
+                        </select>
+                        <span id="error_type" class="text-danger"></span>
+                    </div>
+
+                    <button id="submit" type="submit" value="submit" class="btn btn-primary center" style="background-color: #2d2652;">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
