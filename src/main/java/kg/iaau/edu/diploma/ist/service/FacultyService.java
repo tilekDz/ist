@@ -1,10 +1,11 @@
 package kg.iaau.edu.diploma.ist.service;
 
 import kg.iaau.edu.diploma.ist.entity.Faculty;
-import kg.iaau.edu.diploma.ist.entity.Subject;
 import kg.iaau.edu.diploma.ist.repository.FacultyRepository;
-import kg.iaau.edu.diploma.ist.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +24,10 @@ public class FacultyService {
         return this.facultyRepository.findById(id).orElse(null);
     }
 
+    public Page<Faculty> getAllFaculties(Specification specification, Pageable pageable) {
+        return facultyRepository.findAll(specification, pageable);
+    }
+
     public void save(Faculty faculty) {
         this.facultyRepository.save(faculty);
     }
@@ -34,4 +39,6 @@ public class FacultyService {
     public List<Faculty> getAllActive() {
         return this.facultyRepository.findAllByActiveIsTrue();
     }
+
+
 }

@@ -69,4 +69,12 @@ public class Subject {
     public void setActive(Boolean active) {
         this.active = active;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
