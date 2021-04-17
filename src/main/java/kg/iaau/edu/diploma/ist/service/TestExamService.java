@@ -1,10 +1,11 @@
 package kg.iaau.edu.diploma.ist.service;
 
-import kg.iaau.edu.diploma.ist.entity.Subject;
 import kg.iaau.edu.diploma.ist.entity.TestExam;
-import kg.iaau.edu.diploma.ist.entity.User;
 import kg.iaau.edu.diploma.ist.repository.TestExamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,10 @@ public class TestExamService {
 
     public TestExam getTestExamById(long id) {
         return this.testExamRepository.findById(id).orElse(null);
+    }
+
+    public Page<TestExam> getAllTestExams(Specification specification, Pageable pageable) {
+        return testExamRepository.findAll(specification, pageable);
     }
 
     public void save(TestExam testExam) {

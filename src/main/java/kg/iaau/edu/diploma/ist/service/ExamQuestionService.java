@@ -1,9 +1,11 @@
 package kg.iaau.edu.diploma.ist.service;
 
 import kg.iaau.edu.diploma.ist.entity.ExamQuestion;
-import kg.iaau.edu.diploma.ist.entity.User;
 import kg.iaau.edu.diploma.ist.repository.ExamQuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +17,14 @@ public class ExamQuestionService {
     @Autowired
     public ExamQuestionService(ExamQuestionRepository examQuestionRepository) {
         this.examQuestionRepository = examQuestionRepository;
+    }
+
+    public ExamQuestion getExamQuestionById(long id) {
+        return this.examQuestionRepository.findById(id).orElse(null);
+    }
+
+    public Page<ExamQuestion> getAllExamQuestions(Specification specification, Pageable pageable) {
+        return examQuestionRepository.findAll(specification, pageable);
     }
 
     public void save(ExamQuestion examQuestion) {

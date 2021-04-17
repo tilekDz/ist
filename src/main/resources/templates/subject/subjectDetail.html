@@ -26,8 +26,8 @@
             <a th:href="@{/faculty/index}" class="w3-bar-item w3-button">Faculties</a>
             <a th:href="@{/department/index}" class="w3-bar-item w3-button">Departments</a>
             <a th:href="@{/subject/index}" class="w3-bar-item w3-button">Subjects</a>
-            <a th:href="@{/testExam/index}" class="w3-bar-item w3-button">Exams</a>
-            <a th:href="@{/examQuestion/index}" class="w3-bar-item w3-button">Tests</a>
+            <a th:href="@{/testExam/index}" class="w3-bar-item w3-button">Test-Exams</a>
+            <a th:href="@{/examQuestion/index}" class="w3-bar-item w3-button">Exam questions</a>
             <a th:href="@{/logout}" class="w3-bar-item w3-button">Log out</a>
         </div>
     </div>
@@ -38,7 +38,7 @@
     <div class="w3-image" style="width:1000px; height:550px">
         <div style="text-align: center">
             <h1 style="color: #2d2652">Student Information-Test portal</h1>
-            <p class="lead">- Department page</p>
+            <p class="lead">- Subject page</p>
             <div style="height: 3px;background-color: #2d2652"></div>
             <!--<a th:href="@{/getStockPage}"><button>See Stock</button></a>-->
         </div>
@@ -49,10 +49,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <h2 th:text="'Title: '+ ${department.name}"></h2>
-                <h2 th:text="'Faculty: '+ ${department.faculty}"></h2>
-                <h2 th:text="'Description: '+ ${department.description}"></h2>
-                <a th:href="@{/department/delete/__${department.id}__}"><button type="button" class="btn btn-danger">Delete</button></a>
+                <h2 th:text="'Title: '+ ${subject.name}"></h2>
+                <h2 th:text="'Department: '+ ${subject.department}"></h2>
+                <h2 th:text="'Description: '+ ${subject.description}"></h2>
+                <a th:href="@{/subject/delete/__${subject.id}__}"><button type="button" class="btn btn-danger">Delete</button></a>
             </div>
         </div>
     </div>
