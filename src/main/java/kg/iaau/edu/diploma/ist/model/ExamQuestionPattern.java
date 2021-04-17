@@ -1,30 +1,30 @@
 package kg.iaau.edu.diploma.ist.model;
 
 public class ExamQuestionPattern {
-    private String name;
-    private String description;
+    private String question;
+    private String correctAnswer;
 
     public ExamQuestionPattern() {
     }
 
-    public ExamQuestionPattern(String name, String description) {
-        this.name = name;
-        this.description = description;
+    public ExamQuestionPattern(String question, String correctAnswer) {
+        this.question = question;
+        this.correctAnswer = correctAnswer;
     }
 
-    public String getName() {
-        return name;
+    public String getQuestion() {
+        return question;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCorrectAnswer() {
+        return correctAnswer;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 }

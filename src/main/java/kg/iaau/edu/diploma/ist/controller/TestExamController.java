@@ -30,12 +30,12 @@ import static kg.iaau.edu.diploma.ist.pagination.PaginationConstant.BUTTONS_TO_S
 public class TestExamController {
 
     private final TestExamService testExamService;
-    private final ExamQuestionService examQuestionService;
+    private final SubjectService subjectService;
 
     @Autowired
-    public TestExamController(TestExamService testExamService, ExamQuestionService examQuestionService) {
+    public TestExamController(TestExamService testExamService, SubjectService subjectService) {
         this.testExamService = testExamService;
-        this.examQuestionService = examQuestionService;
+        this.subjectService = subjectService;
     }
 
     @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
@@ -54,7 +54,7 @@ public class TestExamController {
     @RequestMapping("/create")
     public ModelAndView addToHard(){
         ModelAndView modelAndView = new ModelAndView("testExam/addTestExam");
-        modelAndView.addObject("examQuestion", examQuestionService.getAllActive());
+        modelAndView.addObject("subjects", subjectService.getAllActive());
         modelAndView.addObject("item", new TestExam());
         return modelAndView;
     }

@@ -30,8 +30,8 @@
             <a th:href="@{/faculty/index}" class="w3-bar-item w3-button">Faculties</a>
             <a th:href="@{/department/index}" class="w3-bar-item w3-button">Departments</a>
             <a th:href="@{/subject/index}" class="w3-bar-item w3-button">Subjects</a>
-            <a th:href="@{/exam/index}" class="w3-bar-item w3-button">Exams</a>
-            <a th:href="@{/test/index}" class="w3-bar-item w3-button">Tests</a>
+            <a th:href="@{/testExam/index}" class="w3-bar-item w3-button">Tests-Exams</a>
+            <a th:href="@{/examQuestion/index}" class="w3-bar-item w3-button">Exam questions</a>
             <a th:href="@{/logout}" class="w3-bar-item w3-button">Log out</a>
         </div>
     </div>
@@ -67,7 +67,7 @@
                             <tr>
                                 <td><a th:href="@{/department/get/__${s.id}__}"><p th:text="${s.name}"></p></a></td>
                                 <td th:text="${s.description}">...</td>
-                                <td th:text="${s.faculty}">...</td>
+                                <td th:text="${s.faculty.name}">...</td>
                             </tr>
                         </th:block>
                         </tbody>

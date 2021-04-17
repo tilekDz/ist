@@ -26,8 +26,8 @@
             <a th:href="@{/faculty/index}" class="w3-bar-item w3-button">Faculties</a>
             <a th:href="@{/department/index}" class="w3-bar-item w3-button">Departments</a>
             <a th:href="@{/subject/index}" class="w3-bar-item w3-button">Subjects</a>
-            <a th:href="@{/exam/index}" class="w3-bar-item w3-button">Exams</a>
-            <a th:href="@{/test/index}" class="w3-bar-item w3-button">Tests</a>
+            <a th:href="@{/testExam/index}" class="w3-bar-item w3-button">Test-Exams</a>
+            <a th:href="@{/examQuestion/index}" class="w3-bar-item w3-button">Exam questions</a>
             <a th:href="@{/logout}" class="w3-bar-item w3-button">Log out</a>
         </div>
     </div>
@@ -50,7 +50,6 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <h2 th:text="'Title: '+ ${faculty.name}"></h2>
-                <h2 th:text="'Faculty: '+ ${faculty.faculty}"></h2>
                 <h2 th:text="'Description: '+ ${faculty.description}"></h2>
                 <a th:href="@{/faculty/delete/__${faculty.id}__}"><button type="button" class="btn btn-danger">Delete</button></a>
             </div>

@@ -30,12 +30,12 @@ import static kg.iaau.edu.diploma.ist.pagination.PaginationConstant.BUTTONS_TO_S
 public class ExamQuestionController {
 
     private final ExamQuestionService examQuestionService;
-    private final SubjectService subjectService;
+    private final TestExamService testExamService;
 
     @Autowired
-    public ExamQuestionController(ExamQuestionService examQuestionService, SubjectService subjectService) {
+    public ExamQuestionController(ExamQuestionService examQuestionService, TestExamService testExamService) {
         this.examQuestionService = examQuestionService;
-        this.subjectService = subjectService;
+        this.testExamService = testExamService;
     }
 
     @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
@@ -54,7 +54,7 @@ public class ExamQuestionController {
     @RequestMapping("/create")
     public ModelAndView addToHard(){
         ModelAndView modelAndView = new ModelAndView("examQuestion/addExamQuestion");
-        modelAndView.addObject("subject", subjectService.getAllActive());
+        modelAndView.addObject("testExams", testExamService.getAllActive());
         modelAndView.addObject("item", new ExamQuestion());
         return modelAndView;
     }
@@ -76,12 +76,12 @@ public class ExamQuestionController {
     @RequestMapping(value = "/list")
     public ModelAndView listExamQuestion(
             @ModelAttribute ExamQuestionPattern examQuestionPattern, BindingResult br,
-            @RequestParam("name") String name,
-            @RequestParam("description") String description,
+            @RequestParam("question") String question,
+            @RequestParam("correctAnswer") String correctAnswer,
             @RequestParam("page") Optional<Integer> page,
             @RequestParam("size") Optional<Integer> size) {
-        examQuestionPattern.setName(name);
-        examQuestionPattern.setDescription(description);
+        examQuestionPattern.setQuestion(question);
+        examQuestionPattern.setCorrectAnswer(correctAnswer);
         return getModelAndView("examQuestion/examQuestionIndex", examQuestionPattern, page, size);
     }
 
@@ -119,7 +119,7 @@ public class ExamQuestionController {
         modelAndView.addObject("selectedPageNumber", pageSize);
         modelAndView.addObject("pager", pager);
         modelAndView.addObject("pageSizes", PaginationConstant.PAGE_SIZE);
-        modelAndView.addObject("departments", examQuestions);
+        modelAndView.addObject("examQuestions", examQuestions);
         modelAndView.addObject("pattern", examQuestionPattern);
         return modelAndView;
     }

@@ -30,8 +30,8 @@
             <a th:href="@{/faculty/index}" class="w3-bar-item w3-button">Faculties</a>
             <a th:href="@{/department/index}" class="w3-bar-item w3-button">Departments</a>
             <a th:href="@{/subject/index}" class="w3-bar-item w3-button">Subjects</a>
-            <a th:href="@{/exam/index}" class="w3-bar-item w3-button">Exams</a>
-            <a th:href="@{/test/index}" class="w3-bar-item w3-button">Tests</a>
+            <a th:href="@{/testExam/index}" class="w3-bar-item w3-button">Test-Exams</a>
+            <a th:href="@{/examQuestion/index}" class="w3-bar-item w3-button">Exam questions</a>
             <a th:href="@{/logout}" class="w3-bar-item w3-button">Log out</a>
         </div>
     </div>
@@ -55,9 +55,9 @@
 
                         <thead>
                         <tr>
-                            <th><input type="text" name="name" class="form-control input-filter" placeholder="Item Name" th:field="*{name}"/></th>
-                            <th><input type="text" name="description" class="form-control input-filter" placeholder="Item Description" th:field="*{description}"/></th>
-                            <th>Предмет</th>
+                            <th><input type="text" name="question" class="form-control input-filter" placeholder="Question" th:field="*{question}"/></th>
+                            <th><input type="text" name="correctAnswer" class="form-control input-filter" placeholder="Correct Answer" th:field="*{correctAnswer}"/></th>
+                            <th>Test-Exam</th>
                             <th><button class="btn btn-primary" type="submit" style="background-color: #2d2652;">Search</button></th>
                         </tr>
                         </thead>
@@ -65,9 +65,9 @@
                         <tbody>
                         <th:block th:each="s : ${examQuestions}">
                             <tr>
-                                <td><a th:href="@{/examQuestion/get/__${s.id}__}"><p th:text="${s.name}"></p></a></td>
-                                <td th:text="${s.description}">...</td>
-                                <td th:text="${s.subject}">...</td>
+                                <td><a th:href="@{/examQuestion/get/__${s.id}__}"><p th:text="${s.question}"></p></a></td>
+                                <td th:text="${s.correctAnswer}">...</td>
+                                <td th:text="${s.testExam.name}">...</td>
                             </tr>
                         </th:block>
                         </tbody>

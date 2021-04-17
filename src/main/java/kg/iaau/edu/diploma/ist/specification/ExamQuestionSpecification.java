@@ -26,13 +26,13 @@ public class ExamQuestionSpecification implements Specification<ExamQuestion> {
     public Predicate toPredicate(Root<ExamQuestion> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
         final List<Predicate> predicates = new ArrayList<>();
         predicates.add(criteriaBuilder.isTrue(root.<Boolean>get("active")));
-        if(criteria.getName() != null && !criteria.getName().isEmpty()){
-            predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.<String>get("name")),
-                    getContainsLike(criteria.getName())));
+        if(criteria.getQuestion() != null && !criteria.getQuestion().isEmpty()){
+            predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.<String>get("question")),
+                    getContainsLike(criteria.getQuestion())));
         }
-        if(criteria.getDescription() != null && !criteria.getDescription().isEmpty()){
-            predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.<String>get("description")),
-                    getContainsLike(criteria.getDescription())));
+        if(criteria.getCorrectAnswer() != null && !criteria.getCorrectAnswer().isEmpty()){
+            predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.<String>get("correctAnswer")),
+                    getContainsLike(criteria.getCorrectAnswer())));
         }
         return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
     }

@@ -29,8 +29,8 @@
             <a th:href="@{/faculty/index}" class="w3-bar-item w3-button">Faculties</a>
             <a th:href="@{/department/index}" class="w3-bar-item w3-button">Departments</a>
             <a th:href="@{/subject/index}" class="w3-bar-item w3-button">Subjects</a>
-            <a th:href="@{/exam/index}" class="w3-bar-item w3-button">Exams</a>
-            <a th:href="@{/test/index}" class="w3-bar-item w3-button">Tests</a>
+            <a th:href="@{/testExam/index}" class="w3-bar-item w3-button">Test-Exams</a>
+            <a th:href="@{/examQuestion/index}" class="w3-bar-item w3-button">Exam questions</a>
             <a th:href="@{/logout}" class="w3-bar-item w3-button">Log out</a>
         </div>
     </div>
@@ -43,20 +43,44 @@
             <div class="panel-body">
                 <form name="myform" th:action="@{/examQuestion/save}" method="post" th:object="${item}" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="name">Exam Question Name</label>
-                        <input id="name" required th:field="*{name}" name="name" class="form-control" type="text" data-validation="required">
+                        <label for="question">Exam Question</label>
+                        <input id="question" required th:field="*{question}" name="question" class="form-control" type="text" data-validation="required">
                         <span id="error_name" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label for="description">Description *</label>
-                        <input id="description" name="description"  th:field="*{description}" class="form-control" type="text">
-                        <span id="error_description" class="text-danger"></span>
+                        <label for="firstAnswer">First Answer</label>
+                        <input id="firstAnswer" name="firstAnswer"  th:field="*{firstAnswer}" class="form-control" type="text">
+                        <span id="error_firstAnswer" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <select id="subject" name="subject" th:field="*{subject}" data-validation="required" class="form-control" >
-                            <option th:each="f: ${subjects}"
+                        <label for="secondAnswer">Second Answer</label>
+                        <input id="secondAnswer" name="secondAnswer"  th:field="*{secondAnswer}" class="form-control" type="text">
+                        <span id="error_secondAnswer" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="thirdAnswer">Third Answer</label>
+                        <input id="thirdAnswer" name="thirdAnswer"  th:field="*{thirdAnswer}" class="form-control" type="text">
+                        <span id="error_thirdAnswer" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fourthAnswer">Fourth Answer</label>
+                        <input id="fourthAnswer" name="fourthAnswer"  th:field="*{fourthAnswer}" class="form-control" type="text">
+                        <span id="error_fourthAnswer" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="correctAnswer">Correct Answer</label>
+                        <input id="correctAnswer" name="correctAnswer"  th:field="*{correctAnswer}" class="form-control" type="text">
+                        <span id="error_correctAnswer" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Test-Exam</label>
+                        <select id="subject" name="subject" th:field="*{testExam}" data-validation="required" class="form-control" >
+                            <option th:each="f: ${testExams}"
                                     th:value="${f.id}"
                                     th:text="${f.name}"/>
                         </select>

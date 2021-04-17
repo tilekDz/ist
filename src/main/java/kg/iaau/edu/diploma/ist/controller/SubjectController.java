@@ -56,7 +56,7 @@ public class SubjectController {
     @RequestMapping("/create")
     public ModelAndView addToHard(){
         ModelAndView modelAndView = new ModelAndView("subject/addSubject");
-        modelAndView.addObject("department", departmentService.getAllActive());
+        modelAndView.addObject("departments", departmentService.getAllActive());
         modelAndView.addObject("item", new Subject());
         return modelAndView;
     }
