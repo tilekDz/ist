@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>AIU-SITP</title>
+		<!-- Description, Keywords and Author -->
+		<meta name="description" content="Your description">
+		<meta name="keywords" content="Your,Keywords">
+		<meta name="author" content="ResponsiveWebInc">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<!-- Styles -->
+		<!-- Bootstrap CSS -->
+		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+		<!-- Font awesome CSS -->
+		<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+		<!-- Custom CSS -->
+		<link th:href="@{/css/style.css}" rel="stylesheet">
+		
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="#">
+	</head>
+	
+	<body>
+	
+		<div class="wrapper">
+		
+			<!-- header -->
+			<header>
+				<!-- navigation -->
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="container">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="#"><img class="img-responsive" th:src="@{/img/logo.png}" alt="Logo" /></a>
+						</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav navbar-right">
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a th:href="@{/events/user/events}">Events</a></li>
+										<li><a th:href="@{/news/user/allNews}">News</a></li>
+										<li><a th:href="@{/subject/user/subject}">Subjects</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div><!-- /.navbar-collapse -->
+					</div><!-- /.container-fluid -->
+				</nav>
+			</header>
+			
+			<!-- banner -->
+			<div class="banner">
+				<div class="container">
+					<!-- heading -->
+					<h2>ALA-TOO INTERNATIONAL UNIVERSITY</h2>
+					<!-- paragraph -->
+					<p>STUDENT INFORMATION TEST PORTAL</p>
+				</div>
+			</div>
+			<!-- banner end -->
+			
+			<!-- events -->
+			<div class="event" id="event" th:if="${events} != null" style="text-align: center">
+				<div class="container" style="text-align: center">
+					<div class="default-heading">
+						<!-- heading -->
+						<h2>Upcoming events</h2>
+					</div>
+					<div class="row" th:each="s : ${events}" style="text-align: center">
+						<div class="col-md-4 col-sm-4" style="text-align: center">
+							<!-- event item -->
+							<div class="event-item" style="text-align: center">
+								<!-- image -->
+								<img class="img" th:src="@{/img/event/3.jpg}" alt="Events" />
+								<!-- heading -->
+								<h4 th:text="${s.title}"></h4>
+								<!-- sub text -->
+								<span class="sub-text">Description</span>
+								<!-- paragraph -->
+								<p th:text="${s.description}">It is our belief that in order to be most efficient it requires adaptive technology and software solutions.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- events end -->
+			
+			<!-- blog -->
+			<div class="blog" id="blog" style="text-align: center">
+				<div class="container" style="text-align: center">
+					<div class="default-heading">
+						<!-- heading -->
+						<h2>Latest News</h2>
+					</div>
+					<div class="row" th:each="s : ${news}" style="text-align: center">
+						<div class="col-md-4 col-sm-4" style="text-align: center">
+							<!-- blog entry -->
+							<div class="entry" style="text-align: center">
+								<!-- blog entry image -->
+								<img class="img" th:src="@{/img/blog/1.jpg}" alt="News" />
+								<!-- heading / blog post title -->
+								<h3 th:text="${s.title}"></h3>
+								<!-- blog information -->
+								<span class="meta">
+									Description
+								</span>
+								<!-- paragraph -->
+								<p th:text="${s.description}">We combine continuing education and constant monitoring us with your project details if you are interested to ge of industry trends and innovations to provide the right IT solution at the right time. Contact us with your project details if you are interested to get our Web Solution or Software Development Services.</p>
+							</div>
+						</div>
+					</div>
+					<div class="text-center">
+						<a th:href="@{/news/user/allNews}" class="btn btn-default">See More</a>
+					</div>
+				</div>
+			</div>
+			<!-- blog end -->
+			
+			<!-- footer -->
+			<footer>
+				<div class="container">
+					<p><a href="#">Home</a> | <a href="#work">works</a> | <a href="#team">Team</a> | <a href="#contact">Contact</a></p>
+					<div class="social">
+						<a href="#"><i class="fa fa-facebook"></i></a>
+						<a href="#"><i class="fa fa-twitter"></i></a>
+						<a href="#"><i class="fa fa-dribbble"></i></a>
+						<a href="#"><i class="fa fa-linkedin"></i></a>
+						<a href="#"><i class="fa fa-google-plus"></i></a>
+					</div>
+					<!-- copy right -->
+					<!-- This theme comes under Creative Commons Attribution 4.0 Unported. So don't remove below link back -->
+					<p class="copy-right">Copyright &copy; 2014 <a href="#">Your Site</a> | Designed By : <a href="http://www.indioweb.in/portfolio">IndioWeb</a>, All rights reserved. </p>
+				</div>
+			</footer>
+
+		</div>
+		
+		
+		<!-- Javascript files -->
+		<!-- jQuery -->
+		<script th:src="@{/js/jquery.js}"></script>
+		<!-- Bootstrap JS -->
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<!-- Respond JS for IE8 -->
+		<script th:src="@{/js/respond.min.js}"></script>
+		<!-- HTML5 Support for IE -->
+		<script th:src="@{/js/html5shiv.js}"></script>
+		<!-- Custom JS -->
+		<script th:src="@{/js/custom.js}"></script>
+	</body>	
+</html>

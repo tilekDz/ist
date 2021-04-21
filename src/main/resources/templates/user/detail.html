@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<title>AIU-SITP</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Ala-Too_International_University_Seal.png/220px-Ala-Too_International_University_Seal.png" />
+
+<style>
+    body {font-family: "Times New Roman", Georgia, Serif;}
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Playfair Display";
+        letter-spacing: 5px;
+    }
+</style>
+<body>
+<!-- Navigation -->
+<div class="w3-top" style="color: white;">
+    <div class="w3-bar w3-padding w3-card" style="letter-spacing:4px; background-color: #2d2652">
+        <a th:href="@{/adminPage}" class="w3-bar-item w3-button">Student Information-Test portal</a>
+        <!-- Right-sided navbar links. Hide them on small screens -->
+        <div class="w3-right w3-hide-small">
+            <a th:href="@{/news/index}" class="w3-bar-item w3-button">News</a>
+            <a th:href="@{/events/index}" class="w3-bar-item w3-button">Events</a>
+            <a th:href="@{/faculty/index}" class="w3-bar-item w3-button">Faculties</a>
+            <a th:href="@{/department/index}" class="w3-bar-item w3-button">Departments</a>
+            <a th:href="@{/subject/index}" class="w3-bar-item w3-button">Subjects</a>
+            <a th:href="@{/testExam/index}" class="w3-bar-item w3-button">Exams</a>
+            <a th:href="@{/examQuestion/index}" class="w3-bar-item w3-button">Tests</a>
+            <a th:href="@{/user/index}" class="w3-bar-item w3-button">Users</a>
+            <a th:href="@{/logout}" class="w3-bar-item w3-button">Log out</a>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1000px;min-width:500px; margin-top: 9%" id="home">
+    <div class="w3-image" style="width:1000px; height:550px">
+        <div style="text-align: center">
+            <h1 style="color: #2d2652">Student Information-Test portal</h1>
+            <p class="lead">- User page</p>
+            <div style="height: 3px;background-color: #2d2652"></div>
+            <!--<a th:href="@{/getStockPage}"><button>See Stock</button></a>-->
+        </div>
+    </div>
+</header>
+
+<section id="about" style="margin-top: -20%">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 th:text="'First name: '+ ${user.firstName}"></h2>
+                <h2 th:text="'Last name: '+ ${user.lastName}"></h2>
+                <h2 th:text="'Email: '+ ${user.email}"></h2>
+                <a th:href="@{/user/delete/__${user.id}__}"><button type="button" class="btn btn-danger">Delete</button></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>

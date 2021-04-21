@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>AIU-SITP</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Ala-Too_International_University_Seal.png/220px-Ala-Too_International_University_Seal.png" />
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<style>
+    body {font-family: "Times New Roman", Georgia, Serif;}
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Playfair Display";
+        letter-spacing: 5px;
+    }
+</style>
+<body>
+<div class="w3-top" style="color: white;">
+    <div class="w3-bar w3-padding w3-card" style="letter-spacing:4px; background-color: #2d2652">
+        <a th:href="@{/adminPage}" class="w3-bar-item w3-button">Student Information-Test portal</a>
+        <!-- Right-sided navbar links. Hide them on small screens -->
+        <div class="w3-right w3-hide-small">
+            <a th:href="@{/news/index}" class="w3-bar-item w3-button">News</a>
+            <a th:href="@{/events/index}" class="w3-bar-item w3-button">Events</a>
+            <a th:href="@{/faculty/index}" class="w3-bar-item w3-button">Faculties</a>
+            <a th:href="@{/department/index}" class="w3-bar-item w3-button">Departments</a>
+            <a th:href="@{/subject/index}" class="w3-bar-item w3-button">Subjects</a>
+            <a th:href="@{/testExam/index}" class="w3-bar-item w3-button">Exams</a>
+            <a th:href="@{/examQuestion/index}" class="w3-bar-item w3-button">Tests</a>
+            <a th:href="@{/user/index}" class="w3-bar-item w3-button">Users</a>
+            <a th:href="@{/logout}" class="w3-bar-item w3-button">Log out</a>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 9%">
+    <div class="col-md-6 col-sm-12 col-lg-6 col-md-offset-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background-color: #2d2652;">Add User
+            </div>
+            <div class="panel-body">
+                <form name="myform" th:action="@{/user/save}" method="post" th:object="${item}" enctype="multipart/form-data">
+                    <input type="hidden" name="id" th:field="*{id}">
+                    <input th:field="*{active}" type="hidden">
+                    <input th:field="*{date}" type="hidden">
+                    <div class="form-group">
+                        <label for="myName">User First Name *</label>
+                        <input id="myName" th:field="*{firstName}" required="required" name="name" class="form-control" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="myLastName">User Last Name *</label>
+                        <input id="myLastName" th:field="*{lastName}" required="required" name="lastName" class="form-control" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Username or Email *</label>
+                        <input id="email" th:field="*{email}" required="required" name="email"  class="form-control" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password *</label>
+                        <input id="password" th:field="*{password}" required="required" class="form-control" name="password" type="password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="admin">IS Admin *</label>
+                        <input id="admin" th:field="*{admin}" class="form-control" name="admin" type="checkbox">
+                    </div>
+
+                    <button id="submit" type="submit" value="submit" class="btn btn-primary center" style="background-color: #2d2652;">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
