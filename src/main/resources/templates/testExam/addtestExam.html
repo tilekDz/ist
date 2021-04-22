@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="subject">Exam Question</label>
+                        <label for="subject">Subject</label>
                         <select id="subject" name="subject" th:field="*{subject}" data-validation="required" class="form-control" >
                             <option th:each="f: ${subjects}"
                                     th:value="${f.id}"
