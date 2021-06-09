@@ -31,6 +31,10 @@ public class User {
     @Column(name = "IS_ADMIN")
     private Boolean admin;
 
+    @OneToOne
+    @JoinColumn(name = "DEPARTMENT_ID")
+    private Department department;
+
     @ManyToMany(cascade = CascadeType.DETACH )
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
@@ -46,7 +50,7 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, Boolean active, Date date, Boolean isAdmin) {
+    public User(String firstName, String lastName, String email, String password, Boolean active, Date date, Boolean isAdmin, Department department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -54,6 +58,15 @@ public class User {
         this.active = active;
         this.date = date;
         this.admin = isAdmin;
+        this.department = department;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public Long getId() {

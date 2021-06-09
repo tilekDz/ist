@@ -1,15 +1,13 @@
 package kg.iaau.edu.diploma.ist.controller;
 
-import kg.iaau.edu.diploma.ist.entity.News;
 import kg.iaau.edu.diploma.ist.entity.Role;
 import kg.iaau.edu.diploma.ist.entity.User;
-import kg.iaau.edu.diploma.ist.model.NewsPattern;
 import kg.iaau.edu.diploma.ist.model.UserPattern;
 import kg.iaau.edu.diploma.ist.pagination.Pager;
 import kg.iaau.edu.diploma.ist.pagination.PaginationConstant;
 import kg.iaau.edu.diploma.ist.repository.RoleRepository;
+import kg.iaau.edu.diploma.ist.service.DepartmentService;
 import kg.iaau.edu.diploma.ist.service.UserService;
-import kg.iaau.edu.diploma.ist.specification.NewsSpecification;
 import kg.iaau.edu.diploma.ist.specification.UserSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,10 +20,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -39,12 +35,14 @@ public class UserController {
     private final UserService userService;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final DepartmentService departmentService;
 
     @Autowired
-    public UserController(UserService userService, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserController(UserService userService, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder, DepartmentService departmentService) {
         this.userService = userService;
         this.roleRepository = roleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.departmentService = departmentService;
     }
 
     @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
@@ -64,6 +62,7 @@ public class UserController {
     public ModelAndView addToHard(){
         ModelAndView modelAndView = new ModelAndView("user/edit");
         modelAndView.addObject("item", new User());
+        modelAndView.addObject("departments", departmentService.getAllActive());
         return modelAndView;
     }
 
