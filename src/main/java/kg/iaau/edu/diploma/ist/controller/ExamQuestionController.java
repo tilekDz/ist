@@ -17,7 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -53,15 +55,25 @@ public class ExamQuestionController {
 
     @RequestMapping("/create")
     public ModelAndView addToHard(){
-        ModelAndView modelAndView = new ModelAndView("examQuestion/addExamQuestion");
+        ModelAndView modelAndView = new ModelAndView("examQuestion/addexamQuestion");
         modelAndView.addObject("testExams", testExamService.getAllActive());
         modelAndView.addObject("item", new ExamQuestion());
         return modelAndView;
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@ModelAttribute ExamQuestion examQuestion) {
+    public String save(@ModelAttribute ExamQuestion examQuestion, RedirectAttributes redirectAttributes) {
         examQuestion.setActive(true);
+        List<String> answers = new ArrayList<>();
+        answers.add(examQuestion.getFirstAnswer());
+        answers.add(examQuestion.getSecondAnswer());
+        answers.add(examQuestion.getThirdAnswer());
+        answers.add(examQuestion.getFourthAnswer());
+        if (!answers.isEmpty()) {
+            if (!answers.contains(examQuestion.getCorrectAnswer())) {
+                redirectAttributes.addAttribute("error", "You doesn't set correct answer!");
+            }
+        }
         this.examQuestionService.save(examQuestion);
         return "redirect:/examQuestion/index";
     }

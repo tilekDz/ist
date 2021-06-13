@@ -70,6 +70,16 @@
                         <input id="admin" th:field="*{admin}" class="form-control" name="admin" type="checkbox">
                     </div>
 
+                    <div class="form-group">
+                        <label for="subject">Department</label>
+                        <select id="subject" name="subject" th:field="*{department}" data-validation="required" class="form-control" >
+                            <option th:each="f: ${departments}"
+                                    th:value="${f.id}"
+                                    th:text="${f.name}"/>
+                        </select>
+                        <span id="error_type" class="text-danger"></span>
+                    </div>
+
                     <button id="submit" type="submit" value="submit" class="btn btn-primary center" style="background-color: #2d2652;">Save</button>
                 </form>
             </div>

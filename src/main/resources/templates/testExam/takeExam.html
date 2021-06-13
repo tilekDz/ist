@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<title>AIU-SITP</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous">
+
+<link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Ala-Too_International_University_Seal.png/220px-Ala-Too_International_University_Seal.png" />
+<style>
+    body {font-family: "Times New Roman", Georgia, Serif;}
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Playfair Display";
+        letter-spacing: 5px;
+    }
+</style>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top" style="color: white;">
+    <div class="w3-bar w3-padding w3-card" style="letter-spacing:4px; background-color: #2d2652">
+        <a th:href="@{/main/index}" class="w3-bar-item w3-button">Student Information-Test portal</a>
+        <!-- Right-sided navbar links. Hide them on small screens -->
+        <a th:href="@{/logout}" class="w3-bar-item w3-button">Log out</a>
+    </div>
+</div>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width: 95%">
+
+    <!-- About Section -->
+    <div class="w3-row w3-padding-64" id="about">
+        <div class="w3-col">
+            <div th:if="${success} != null">
+                <p th:text="${success}"></p>
+            </div>
+            <h2 style="color: #2d2652; padding-top: 40px">Exam - Test</h2>
+
+            <form action="#" id="takeExamForm" th:action="@{/testExam/takeExam}" method="post" th:object="${item}">
+                <input id="hiddenArrayAnswers" hidden="hidden" th:field="*{examAnswers}">
+                <input hidden="hidden" th:field="*{testExam}">
+                <input hidden="hidden" th:field="*{user}">
+                <div class="table">
+                    <table class="table table-striped table-responsive-md btn-table" data-pagination="true" data-side-pagination="server">
+
+                        <tbody>
+                        <th:block th:each="s : ${questions}">
+                            <tr style="margin-left: 50px">
+                                <input type="text" name="question" th:value="${s.question}">
+                                <input style="margin-left: 5px" type="checkbox" name="newsletter" th:text="${s.firstAnswer}" th:value="${s.firstAnswer}">
+                                <input style="margin-left: 5px" type="checkbox" name="newsletter" th:text="${s.secondAnswer}" th:value="${s.secondAnswer}">
+                                <input style="margin-left: 5px" type="checkbox" name="newsletter" th:text="${s.thirdAnswer}" th:value="${s.thirdAnswer}">
+                                <input style="margin-left: 5px" type="checkbox" name="newsletter" th:text="${s.fourthAnswer}" th:value="${s.fourthAnswer}">
+
+                                <p th:if="${success} != null">Correct answer</p>
+                                <input style="margin-left: 5px" type="text" name="correctAnswer" th:if="${success} != null" th:value="${s.correctAnswer}">
+                            </tr>
+                            <br/>
+                        </th:block>
+                        </tbody>
+
+                    </table>
+                </div>
+                <button th:if="${success} == null" id="submit" type="submit" value="submit" class="btn btn-primary center" style="background-color: #2d2652;">Save</button>
+
+            </form>
+        </div>
+    </div>
+    <!-- End page content -->
+</div>
+
+<script
+        src="https://code.jquery.com/jquery-1.11.1.min.js"
+        integrity="sha256-VAvG3sHdS5LqTT+5A/aeq/bZGa/Uj04xKxY8KM/w9EE="
+        crossorigin="anonymous"></script>
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function() {
+        changePageAndSize();
+    });
+    function changePageAndSize() {
+        $('#pageSizeSelect').change(function(evt) {
+            window.location.replace("/testExam/list?name=&type&description&size=" + this.value + "&page=1");
+        });
+    }
+
+    $( "#takeExamForm" ).submit(function( event ) {
+        var n = $( "input:checked" ).val();
+        document.getElementById("hiddenArrayAnswers").value = n;
+        $( "#takeExamForm" ).submit();
+    });
+    /*]]>*/
+</script>
+</body>
+</html>

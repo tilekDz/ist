@@ -20,19 +20,9 @@
 <!-- Navigation -->
 <div class="w3-top" style="color: white;">
     <div class="w3-bar w3-padding w3-card" style="letter-spacing:4px; background-color: #2d2652">
-        <a th:href="@{/adminPage}" class="w3-bar-item w3-button">Student Information-Test portal</a>
+        <a th:href="@{/main/index}" class="w3-bar-item w3-button">Student Information-Test portal</a>
         <!-- Right-sided navbar links. Hide them on small screens -->
-        <div class="w3-right w3-hide-small">
-            <a th:href="@{/news/index}" class="w3-bar-item w3-button">News</a>
-            <a th:href="@{/events/index}" class="w3-bar-item w3-button">Events</a>
-            <a th:href="@{/faculty/index}" class="w3-bar-item w3-button">Faculties</a>
-            <a th:href="@{/department/index}" class="w3-bar-item w3-button">Departments</a>
-            <a th:href="@{/subject/index}" class="w3-bar-item w3-button">Subjects</a>
-            <a th:href="@{/testExam/index}" class="w3-bar-item w3-button">Test-Exams</a>
-            <a th:href="@{/examQuestion/index}" class="w3-bar-item w3-button">Exam questions</a>
-            <a th:href="@{/user/index}" class="w3-bar-item w3-button">Users</a>
-            <a th:href="@{/logout}" class="w3-bar-item w3-button">Log out</a>
-        </div>
+        <a th:href="@{/logout}" class="w3-bar-item w3-button">Log out</a>
     </div>
 </div>
 
@@ -41,7 +31,7 @@
     <div class="w3-image" style="width:1000px; height:550px">
         <div style="text-align: center">
             <h1 style="color: #2d2652">Student Information-Test portal</h1>
-            <p class="lead">- Exam Question page</p>
+            <p class="lead">- Test Exam page</p>
             <div style="height: 3px;background-color: #2d2652"></div>
             <!--<a th:href="@{/getStockPage}"><button>See Stock</button></a>-->
         </div>
@@ -52,10 +42,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <h2 th:text="'Question: '+ ${examQuestion.question}"></h2>
-                <h2 th:text="'Correct Answer : '+ ${examQuestion.correctAnswer}"></h2>
-                <h2 th:text="'Test Exam: '+ ${examQuestion.testExam.name}"></h2>
-                <a th:href="@{/examQuestion/delete/__${examQuestion.id}__}"><button type="button" class="btn btn-danger">Delete</button></a>
+                <h2 th:text="'Title: '+ ${testExam.name}"></h2>
+                <h2 th:text="'Subject: '+ ${testExam.subject.name}"></h2>
+                <h2 th:text="'Description: '+ ${testExam.description}"></h2>
+                <a th:href="@{/testExam/takeExamOpen/__${testExam.id}__}"><button type="button" class="btn btn-primary">Take Exam</button></a>
             </div>
         </div>
     </div>

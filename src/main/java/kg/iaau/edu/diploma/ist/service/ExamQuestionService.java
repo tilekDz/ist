@@ -1,6 +1,7 @@
 package kg.iaau.edu.diploma.ist.service;
 
 import kg.iaau.edu.diploma.ist.entity.ExamQuestion;
+import kg.iaau.edu.diploma.ist.entity.TestExam;
 import kg.iaau.edu.diploma.ist.repository.ExamQuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,6 +41,8 @@ public class ExamQuestionService {
         return this.examQuestionRepository.findAllByActiveIsTrue();
     }
 
-
+    public List<ExamQuestion> findAllByTest(TestExam testExam) {
+        return this.examQuestionRepository.findAllByTestExam(testExam);
+    }
 
 }

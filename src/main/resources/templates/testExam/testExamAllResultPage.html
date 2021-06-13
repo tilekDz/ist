@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<title>AIU-SITP</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous">
+
+<link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Ala-Too_International_University_Seal.png/220px-Ala-Too_International_University_Seal.png" />
+<style>
+    body {font-family: "Times New Roman", Georgia, Serif;}
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Playfair Display";
+        letter-spacing: 5px;
+    }
+</style>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top" style="color: white;">
+    <div class="w3-bar w3-padding w3-card" style="letter-spacing:4px; background-color: #2d2652">
+        <a th:href="@{/adminPage}" class="w3-bar-item w3-button">Student Information-Test portal</a>
+        <!-- Right-sided navbar links. Hide them on small screens -->
+        <div class="w3-right w3-hide-small">
+            <a th:href="@{/news/index}" class="w3-bar-item w3-button">News</a>
+            <a th:href="@{/events/index}" class="w3-bar-item w3-button">Events</a>
+            <a th:href="@{/faculty/index}" class="w3-bar-item w3-button">Faculties</a>
+            <a th:href="@{/department/index}" class="w3-bar-item w3-button">Departments</a>
+            <a th:href="@{/subject/index}" class="w3-bar-item w3-button">Subjects</a>
+            <a th:href="@{/testExam/index}" class="w3-bar-item w3-button">Exams</a>
+            <a th:href="@{/examQuestion/index}" class="w3-bar-item w3-button">Tests</a>
+            <a th:href="@{/user/index}" class="w3-bar-item w3-button">Users</a>
+            <a th:href="@{/logout}" class="w3-bar-item w3-button">Log out</a>
+        </div>
+    </div>
+</div>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width: 95%">
+
+    <!-- About Section -->
+    <div class="w3-row w3-padding-64" id="about">
+        <div class="w3-col">
+            <h2 style="color: #2d2652; padding-top: 40px">All Exams - Tests results</h2>
+            <form action="#" id="searchForm" th:action="@{/testExam/search}" method="post" th:object="${pattern}">
+                <div class="table">
+                    <table class="table table-striped table-responsive-md btn-table" data-pagination="true" data-side-pagination="server">
+
+                        <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Result</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <th:block th:each="s : ${exams}">
+                            <tr>
+                                <td th:if="${s.user} != null" th:text="${s.user.username}">...</td>
+                                <td th:if="${s.user} == null">Admin</td>
+                                <td th:text="${s.testExam.name}"></td>
+                                <td th:text="${s.date}">...</td>
+                                <td th:text="${s.result}">...</td>
+                            </tr>
+                        </th:block>
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- End page content -->
+</div>
+
+<script
+        src="https://code.jquery.com/jquery-1.11.1.min.js"
+        integrity="sha256-VAvG3sHdS5LqTT+5A/aeq/bZGa/Uj04xKxY8KM/w9EE="
+        crossorigin="anonymous"></script>
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function() {
+        changePageAndSize();
+    });
+    function changePageAndSize() {
+        $('#pageSizeSelect').change(function(evt) {
+            window.location.replace("/testExam/list?name=&type&description&size=" + this.value + "&page=1");
+        });
+    }
+    /*]]>*/
+</script>
+</body>
+</html>

@@ -42,6 +42,9 @@
 
 <!-- Page content -->
 <div class="w3-content" style="max-width: 95%">
+    <div th:if="${error} != null">
+        <p th:text="${error}"></p>
+    </div>
 
     <!-- About Section -->
     <div class="w3-row w3-padding-64" id="about">
